@@ -1,3 +1,5 @@
+# AUTHOR: Sven Schrodt<sven.schrodt@schrodt.club
+# SINCE: 2025-05-19
 from net import ApiReader
 
 reader = ApiReader()
