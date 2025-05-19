@@ -7,34 +7,48 @@ class ApiReader:
 
     api_list: list
     lst_response: requests.models.Response
-    dta: list
+    
 
     def __init__(self):
         self.api_list = [
             {
-                "uri": "http://numbersapi.com/{}/{}",
-                "dta_root": "drinks",
+                "uri": "https://api.zippopotam.us/{}/{}",
+                "uri_tpl": ['lang', 'number'],
+                "dta_root": "places",
                 "description": "API with trivia on m3trix",
                 "type": ['text/plain', 'json'],
+                "short_id": "zip"
+            },
+            
+            {
+                "uri": "http://numbersapi.com/{}/{}",
+                "uri_tpl": ['number', 'type'],
+                "description": "API with trivia on m3trix",
+                "type": ['text/plain', 'json'],
+                "short_id": "numbers"
             },
             {
                 "uri": "https://www.thecocktaildb.com/api/json/v1/1/search.php?s={}",
+                 "uri_tpl": ['q'],
                 "dta_root": "drinks",
                 "description": "Cocktail Recipes",
                 "type": "json",
+                "short_id": "drinks"
             },
             {
                 "uri": "https://opentdb.com/api.php?amount={}",
+                 "uri_tpl": ['amount'],
                 "dta_root": "results",
                 "description": "open trivia database",
                 "type": "json",
+                "short_id": "trivia"
             },
         ]
     
-    def get(self, uri, dta_root='') -> list:
-        self.lst_response = requests.get(uri)
+    def get(self, uri, dta_root='', headers=[]):
+        self.lst_response = requests.get(uri, headers=headers)
         if dta_root == '':
-            return self.lst_response.text
+            self.dta = self.lst_response.text
         else: 
             self.dta = self.lst_response.json()[dta_root]
     

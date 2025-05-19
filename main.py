@@ -8,9 +8,13 @@ reader = ApiReader()
 
 #exit(666)
 
-uri = reader.api_list[0]['uri'].format('Mojito')
-root = reader.api_list[0]['dta_root']
-reader.get(uri, root)
+uri = reader.api_list[0]['uri'].format(666, 'math?json')
+#root = reader.api_list[0]['dta_root']
+#print(uri)
+
+#exit(355)
+
+reader.get(uri)
 resp = reader.lst_response
 
-print(resp.text)
+print(resp.json())
