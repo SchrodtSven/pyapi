@@ -62,9 +62,5 @@ zenuml
     Bob->Claire: ACK/SYN
     Bob->Didier: ACK/SYN
     Claire->Cryp: Key gen.
-    Cryp.SyncMessage
-    Cryp.SyncMessage(with, parameters) {
-      B.nestedSyncMessage()
-      return result
-    }
+    
 ```
