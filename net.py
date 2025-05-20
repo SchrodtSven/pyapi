@@ -52,6 +52,21 @@ class ApiReader:
         else: 
             self.dta = self.lst_response.json()[dta_root]
     
+    
+    def post(self, uri, dta_root='', headers=[], payload_dict={}, data=''):
+        self.lst_response = requests.post(uri, headers=headers, json=payload_dict, data= data)
+        if dta_root == '':
+            self.dta = self.lst_response
+        else: 
+            self.dta = self.lst_response.json()[dta_root]
+    
+    def put(self, uri, dta_root='', headers=[], payload_dict={}, data=''):
+        self.lst_response = requests.put(uri, headers=headers, json=payload_dict, data= data)
+        if dta_root == '':
+            self.dta = self.lst_response
+        else: 
+            self.dta = self.lst_response.json()[dta_root]
+    
         
 
 

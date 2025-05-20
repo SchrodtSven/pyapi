@@ -12,7 +12,8 @@
  * @since 2025-05-11
  */
 
- 
+
+
    // if requested resource does not exist as file in document root:
    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . parse_url($_SERVER['REQUEST_URI'], \PHP_URL_PATH))) { 
        // set current script name in super global &
