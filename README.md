@@ -1,11 +1,11 @@
-# pyapi
+# PyApi
 API client (HTTP based) 
 
 
 
 ## Basic usage
 
-### General
+### Pseudo example
 ```python
 from net import ApiReader
 reader = ApiReader()
@@ -14,7 +14,7 @@ resp = reader.lst_response
 ```
 
 
-### Functioning example
+### Working example
 ```python
 uri = reader.api_list[0]['uri'].format('Mojito')
 root = reader.api_list[0]['dta_root']

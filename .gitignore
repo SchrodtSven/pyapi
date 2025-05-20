@@ -176,3 +176,5 @@ cython_debug/
 # 
 dcda/
 grube.py
+tmp/
+.DS_Store
