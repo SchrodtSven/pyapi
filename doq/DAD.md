@@ -29,7 +29,7 @@ class ApiReader {
     put()
         lst_response
     dta
-    __init__()
+    __ init __()
 }
 
 class RESTList {
