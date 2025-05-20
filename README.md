@@ -7,7 +7,7 @@ API client (HTTP based)
 
 ### Pseudo example
 ```python
-from net import ApiReader
+
 reader = ApiReader()
 reader.get('https://example.net/v1/user/12345', 'root_ele')
 resp = reader.lst_response
@@ -16,6 +16,7 @@ resp = reader.lst_response
 
 ### Working example
 ```python
+from net import ApiReader
 uri = reader.api_list[0]['uri'].format('Mojito')
 root = reader.api_list[0]['dta_root']
 reader.get(uri, root)
