@@ -178,3 +178,5 @@ dcda/
 grube.py
 tmp/
 .DS_Store
+api.cfg.ini
+*.ipynb
