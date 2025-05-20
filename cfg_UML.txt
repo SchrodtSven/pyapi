@@ -1,0 +1,17 @@
+@startuml
+class Cfg {
+    get_api_key()
+        config
+    __init__()
+}
+class APIList {
+    get_dict()
+    get_headers()
+        __init__()
+}
+class RESTList {
+        bar
+    __init__()
+}
+APIList <|-- RESTList
+@enduml

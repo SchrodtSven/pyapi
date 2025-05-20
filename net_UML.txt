@@ -1,0 +1,17 @@
+@startuml
+class ApiReader {
+    get()
+    post()
+    put()
+        lst_response
+    dta
+    dta
+    lst_response
+    dta
+    dta
+    lst_response
+    dta
+    dta
+    __init__()
+}
+@enduml

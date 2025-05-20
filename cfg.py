@@ -1,8 +1,8 @@
 import configparser
 
 class Cfg:
-    cfg_fn: str = "api.cfg.ini"
-
+    cfg_fn:str = "api.cfg.ini"
+    config:configparser.ConfigParser = None
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.read(self.cfg_fn)
@@ -22,7 +22,7 @@ class APIList:
                 "uri": "https://api.api-ninjas.com/v1/{}?{}={}",
                 "uri_tpl": ["ctx", "subject", "q"],
                 "dta_root": "places",
-                "description": "API with trivia on m3trix",
+                "description": "Several endpoints",
                 "type": ["text/plain", "json"],
                 "short_id": "zip",
                 "cfg_idx": "api_ninjas", # used to get API key from (hidden, NOT committed) ini file)
@@ -36,7 +36,7 @@ class APIList:
                 "type": ["text/plain", "json"],
                 "short_id": "zip",
                 "cfg_idx": "openweathermap", # used to get API key from (hidden, NOT committed) ini file)
-                "header_key_name": "X-Api-Key"
+                "header_key_name": "appid"
             }
         }
     
@@ -51,3 +51,14 @@ class APIList:
         headers = {}
         headers[self.api_list[key]['header_key_name']] = self.api_list[key]['api_key']
         return headers  
+    
+
+class RESTList(APIList):
+    
+    foo:str
+    bar:id
+    
+    def __init__(self):
+        super().__init__()
+        self.foo = 'shdjhs'
+        self.bar = 42
