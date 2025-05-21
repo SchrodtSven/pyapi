@@ -15,6 +15,9 @@ class Http
 {
     private string $method;
 
+    private $ct = 'application/json'; 
+    private array $dta;
+
     public function __construct( ) 
     {
         $this->method = $_SERVER['REQUEST_METHOD'];
@@ -24,21 +27,18 @@ class Http
     {
         switch($this->method) {
             case 'POST':
-                $dta = $_POST;
+                $this->dta = $_POST;
                 break;
             case 'PUT':
-                $dta = $this->getPutParams();
+                $this->dta = $this->getPutParams();
                 break;
             default:
-                $dta = $_REQUEST;
+                $this->dta = $_REQUEST;
         }
-        ob_start();
-        print_r(['UA' => $_SERVER['HTTP_USER_AGENT'], 'method' => strtolower($this->method)]);
-        print_r($dta);
 
-        $outp = ob_get_contents();
-        ob_end_clean();
-        return $this->trimme($outp);
+        $this->handleContentType();
+        $this->dta = array_merge($this->dta, $_SERVER);
+        return json_encode($this->dta);
     }
 
     public function trimme(string $input): string
@@ -47,6 +47,21 @@ class Http
         return trim(str_replace(['Array', '(', ')'], '', $output));
     }
 
+    private function handleContentType()
+    {
+        $this->ct = $_REQUEST['ct'] ?? null;
+        header('Content-Type: application/json');
+        #@FIXME
+        return true;
+
+        // ob_start();
+        print_r(['UA' => $_SERVER['HTTP_USER_AGENT'], 'method' => strtolower($this->method)]);
+        print_r($this->dta);
+
+        $outp = ob_get_contents();
+        ob_end_clean();
+        return $this->trimme($outp);
+    }
 
 
     public function getParams(): array
