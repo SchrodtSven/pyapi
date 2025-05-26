@@ -21,10 +21,6 @@ class Http
     public function __construct( ) 
     {
         $this->method = $_SERVER['REQUEST_METHOD'];
-    }
-
-    public function debug(): string
-    {
         switch($this->method) {
             case 'POST':
                 $this->dta = $_POST;
@@ -35,13 +31,20 @@ class Http
             default:
                 $this->dta = $_REQUEST;
         }
+        $this->handleContentType();
+    }
+
+    public function debug(): string
+    {
+        
 
         $this->handleContentType();
         $this->dta = array_merge($this->dta, $_SERVER);
+        //@FIXME: return data corresp. to ct
         return json_encode($this->dta);
     }
 
-    public function trimme(string $input): string
+    public function trimMe(string $input): string
     {
         $output = preg_replace('! \s+! ', '', $input);
         return trim(str_replace(['Array', '(', ')'], '', $output));
@@ -54,15 +57,31 @@ class Http
         #@FIXME
         return true;
 
-        // ob_start();
+        // 
+    }
+
+    public function jsonify(): string
+    {
+        return json_encode($this->dta);
+    }
+
+    public function txtify(): string
+    {
+        ob_start();
         print_r(['UA' => $_SERVER['HTTP_USER_AGENT'], 'method' => strtolower($this->method)]);
         print_r($this->dta);
 
         $outp = ob_get_contents();
         ob_end_clean();
-        return $this->trimme($outp);
+        return $this->trimMe($outp);
     }
 
+
+    public function xmlify(): string
+    {
+        //@FIXME: 
+        return ''; 
+    }
 
     public function getParams(): array
     {
